@@ -80,6 +80,7 @@ const AppSidebarNav = defineComponent({
       }
 
       return item.to
+        // if nav item,
         ? h(
             RouterLink,
             {
@@ -119,6 +120,7 @@ const AppSidebarNav = defineComponent({
                 ),
             },
           )
+        // if title or badge
         : h(
             resolveComponent(item.component),
             {},

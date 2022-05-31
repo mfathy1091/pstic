@@ -12,7 +12,7 @@
 	<div>
 		<div class="card-body">
 			<div class="form-inline ml-2">
-				<button class="btn btn-success btn-sm mr-2" @click="showCreateRoleModal" v-if="$can('user_create')">
+				<button class="btn btn-success btn-sm mr-2" @click="showCreateRoleModal">
 					<i class="fas fa-plus-circle"></i><span><b> Role</b></span>
 				</button>
 
@@ -43,11 +43,11 @@
 									</span>
 								</td>
 								<td>
-									<a href="#" @click="showEditRoleModal(role)" v-if="$can('role_edit')">
+									<a href="#" @click="showEditRoleModal(role)">
 										<i class="fa fa-edit blue"></i>
 									</a>
 									
-									<a href="#" @click="deleteRole(role.id)" v-if="$can('role_delete')">
+									<a href="#" @click="deleteRole(role.id)">
 										<i class="fa fa-trash red"></i>
 									</a>
 								</td>

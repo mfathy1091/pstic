@@ -23,7 +23,7 @@ export default {
 
 		getNationalities(){
 			// this.$Progress.start();
-			axios.get("/api/nationalities")
+			axios.get("/nationalities")
 			.then(({data}) => {
 				this.nationalities = data.data
 			});
@@ -32,12 +32,12 @@ export default {
 
 		getReferralSources(){			
 			// this.$Progress.start();
-			axios.get("/api/referral_sources").then(({data}) => (this.referralSources = data.data));
+			axios.get("/referral_sources").then(({data}) => (this.referralSources = data.data));
 			// this.$Progress.finish();
 		},
 		getReferralReasons(){
 			// this.$Progress.start();
-			axios.get("/api/referral_reasons")
+			axios.get("/referral_reasons")
 			.then(({data}) => {
 				this.referralReasons = data.data
 			});
@@ -45,19 +45,19 @@ export default {
 		},
 		getRoles(){			
 			// this.$Progress.start();
-			axios.get("/api/roles")
+			axios.get("/roles")
 			.then(({data}) => (this.roles = data.data));
 			// this.$Progress.finish();
 		},
 		getAreas(){			
 			// this.$Progress.start();
-			axios.get("/api/areas")
+			axios.get("/areas")
 			.then(({data}) => (this.areas = data.data));
 			// this.$Progress.finish();
 		},
 		getDepartments(){			
 			// this.$Progress.start();
-			axios.get("/api/departments")
+			axios.get("/departments")
 			.then(({data}) => (this.departments = data.data));
 			// this.$Progress.finish();
 		},
@@ -66,13 +66,13 @@ export default {
 
 		getPermissions(){			
 			// this.$Progress.start();
-			axios.get("/api/permission")
+			axios.get("/permission")
 			.then(({data}) => (this.permissions = data.data));
 			// this.$Progress.finish();
 		},
 		// getAbilities(){			
 		// 	// this.$Progress.start();
-		// 	axios.get("/api/abilities")
+		// 	axios.get("/abilities")
 		// 	.then(({data}) => (this.abilities = data.data));
 		// 	// this.$Progress.finish();
 		// },
@@ -81,7 +81,7 @@ export default {
 		getCasee(caseeId){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get("/api/casees/"+caseeId)
+			axios.get("/casees/"+caseeId)
             .then(({data}) => {
                 this.casee = data.data
             });
@@ -94,7 +94,7 @@ export default {
 		getCaseeHousingReferrals(caseeId){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get('/api/casees/'+ caseeId +'/housing-referrals', { params: { casee_id: caseeId } } )
+			axios.get('/casees/'+ caseeId +'/housing-referrals', { params: { casee_id: caseeId } } )
 			.then((response) => {
 				// success
                 this.caseeHousingReferrals = response.data.data;
@@ -112,7 +112,7 @@ export default {
 		getCaseeReferrals(caseeId){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get('/api/casees/' + caseeId + '/referrals', { params: { casee_id: caseeId } } )
+			axios.get('/casees/' + caseeId + '/referrals', { params: { casee_id: caseeId } } )
 			.then((response) => {
 				// success
                 this.caseeReferrals = response.data.data;
@@ -130,14 +130,14 @@ export default {
 
 		getPsIntake(psIntakeId){			
 			// this.$Progress.start();
-			axios.get("/api/ps-intakes/"+psIntakeId)
+			axios.get("/ps-intakes/"+psIntakeId)
             .then(({data}) => (this.psIntake = data.data));
 			// this.$Progress.finish();
 		},
 
 		getHousingGrantStatuses(){
 			// this.$Progress.start();
-			axios.get('/api/housing-grant-statuses/')
+			axios.get('/housing-grant-statuses/')
 			.then((response) => {
 				// success
 				this.housingGrantStatuses = response.data.data;
@@ -152,7 +152,7 @@ export default {
 
 		getBeneficiaryStatuses(){
 			// this.$Progress.start();
-			axios.get('/api/beneficiary-statuses/')
+			axios.get('/beneficiary-statuses/')
 			.then((response) => {
 				// success
 				this.beneficiaryStatuses = response.data.data;
@@ -167,7 +167,7 @@ export default {
 
 		getRelationships(){
 			// this.$Progress.start();
-			axios.get('/api/relationships/')
+			axios.get('/relationships/')
 			.then((response) => {
 				// success
 				this.relationships = response.data.data;
@@ -182,7 +182,7 @@ export default {
 		getMonths(){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get('/api/months/')
+			axios.get('/months/')
 			.then((response) => {
 				// success
 				this.months = response.data.data;
@@ -199,7 +199,7 @@ export default {
 
 		getCaseeBeneficiaries(caseeId){
 			// this.$Progress.start();
-			axios.get('/api/beneficiaries/', { params: { casee_id: caseeId } })
+			axios.get('/beneficiaries/', { params: { casee_id: caseeId } })
 			.then((response) => {
 				// success
 				this.caseeBeneficiaries = response.data.data;
@@ -214,7 +214,7 @@ export default {
 
 		getCaseeActiveBeneficiaries(caseeId){
 			// this.$Progress.start();
-			axios.get('/api/beneficiaries/', { params: { casee_id: caseeId, is_active: 1  } })
+			axios.get('/beneficiaries/', { params: { casee_id: caseeId, is_active: 1  } })
 			.then((response) => {
 				// success
 				this.CaseeActiveBeneficiaries = response.data.data;
@@ -229,7 +229,7 @@ export default {
 
 		getActiveReferralBeneficiaries(referralId){
 			// this.$Progress.start();
-			axios.get('/api/referral-beneficiaries/', { params: {referral_id: referralId, is_active: 1 } })
+			axios.get('/referral-beneficiaries/', { params: {referral_id: referralId, is_active: 1 } })
 			.then((response) => {
 				// success
 				this.referralBeneficiaries = response.data.data;
@@ -244,7 +244,7 @@ export default {
 
 		getUsers(filter){
 			// this.$Progress.start();
-			axios.get('/api/users/', { params: filter } )
+			axios.get('/users/', { params: filter } )
 			.then((response) => {
 				this.users = response.data.data.data;
 				// this.$Progress.finish();
@@ -258,7 +258,7 @@ export default {
 		getServiceTypes(){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get('/api/service-types/')
+			axios.get('/service-types/')
 			.then((response) => {
 				this.serviceTypes = response.data.data;
 				// this.$Progress.finish();
@@ -274,7 +274,7 @@ export default {
 		getBudgets(){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get('/api/budgets/')
+			axios.get('/budgets/')
 			.then((response) => {
 				this.budgets = response.data.data;
 				// this.$Progress.finish();
@@ -290,7 +290,7 @@ export default {
 		getEmergencies(){
 			// this.$Progress.start();
 			this.$store.state.showLoading = true;
-			axios.get('/api/emergencies', { params: {month_id: this.filter.month_id, user_id: this.filter.user_id} })
+			axios.get('/emergencies', { params: {month_id: this.filter.month_id, user_id: this.filter.user_id} })
             .then((response) => {
 				// success
 				this.emergencies = response.data.data;

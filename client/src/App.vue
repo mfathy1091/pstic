@@ -5,7 +5,17 @@
 		<AppHeader />
 		<div class="body flex-grow-1 px-3">
 			<CContainer lg>
-				<router-view />
+				<div class="justify-content-center">
+					<div class="col">
+						<div class="card">
+							<div class="card-body">
+								<div class="div">
+									<router-view />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</CContainer>
 		</div>
 		<AppFooter />

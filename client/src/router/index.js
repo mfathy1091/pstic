@@ -1,5 +1,5 @@
 import store from '@/store';
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import DefaultLayout from '../layouts/DefaultLayout'
 import Login from '../views/Login.vue'
 import { h, resolveComponent } from 'vue'
@@ -42,9 +42,13 @@ const routes = [
 ]
 
 const router = createRouter({
-	history: createWebHistory(process.env.BASE_URL),
-	routes
-});
+	history: createWebHashHistory(process.env.BASE_URL),
+	routes,
+	scrollBehavior() {
+		// always scroll to top
+		return { top: 0 }
+	},
+  })
 
 // let authenticated = store.getters['auth/authenticated']
 router.beforeEach((to, from, next) => {

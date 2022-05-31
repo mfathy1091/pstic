@@ -12,8 +12,9 @@
 	<div>
 		<div class="card-body">
 			<div class="form-inline ml-2">
-				<button class="btn btn-success btn-sm mr-2" @click="showCreateUserModal">
-					<i class="fas fa-plus-circle"></i><span><b> User</b></span>
+				<button class="btn btn-primary btn-sm mr-2" @click="showCreateUserModal">
+					<i class="fa-solid fa-circle-plus"></i>
+					<span><b> User</b></span>
 				</button>
 
                 <button class="btn btn-secondary btn-sm mr-5" @click="getUsers">
@@ -44,7 +45,7 @@
                 </select>                 
             </div>
 			<div class="row mt-3">
-				<table class="border table table-hover">
+				<table class=" table table-hover">
 					<thead>
 						<tr>
 							<th>Full Name</th>
@@ -62,20 +63,20 @@
 						<tr v-for="user in users" :key="user.id">
 							<td>{{ user.full_name }}</td>
 							<td>{{ user.email }}</td>
-							<td>{{ user.created_at }}</td>
+							<td>{{ $filters.myDateShort(user.created_at) }}</td>
 							<td>
 								<div v-if="user.roles">
-									<span v-for="role in user.roles" :key="role.id" class="badge badge-pill badge-primary">{{role.name}}</span>
+									<span v-for="role in user.roles" :key="role.id" class="badge bg-primary">{{role.name}}</span>
 								</div>
 							</td>
 							<td>
 								<div v-if="user.areas">
-									<span v-for="area in user.areas" :key="area.id" class="badge badge-pill badge-primary">{{area.name}}</span>
+									<span v-for="area in user.areas" :key="area.id" class="badge bg-primary">{{area.name}}</span>
 								</div>
 							</td>
 							<td>
-								<span v-show="user.is_active == '0'" class="badge badge-pill badge-secondary">Inactive</span>
-								<span v-show="user.is_active == '1'" class="badge badge-pill badge-success">Active</span>
+								<span v-show="user.is_active == '0'" class="badge bg-secondary">Inactive</span>
+								<span v-show="user.is_active == '1'" class="badge bg-success">Active</span>
 							</td>
 							<td>
 								<span v-if="user.direct_manager">{{ user.direct_manager.full_name }}</span>
@@ -109,6 +110,7 @@
 	</div>
 </template>
 <script>
+
 import UserModal from './UserModal'
 import axiosMixin from '../../../mixins/axiosMixin'
 import axios from 'axios'
