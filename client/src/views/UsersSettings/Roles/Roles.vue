@@ -12,11 +12,11 @@
 	<div>
 		<div class="card-body">
 			<div class="form-inline ml-2">
-				<button class="btn btn-success btn-sm mr-2" @click="showCreateRoleModal">
+				<button class="btn btn-primary btn-sm mr-2" @click="showCreateRoleModal">
 					<i class="fas fa-plus-circle"></i><span><b> Role</b></span>
 				</button>
 
-                <button class="btn btn-secondary btn-sm mr-5" @click="getRoles">
+                <button class="btn btn-primary btn-sm mr-5" @click="getRoles">
 					<i class="fas fa-sync-alt"></i>
 				</button>
 
@@ -38,9 +38,12 @@
 							<tr v-for="role in roles" :key="role.id">
 								<td>{{ role.name }}</td>
 								<td class="row">
-									<span v-for="permission in role.permissions" :key="permission.id" class="badge badge-pill badge-primary">
-										{{permission.name}}
-									</span>
+									<ul>
+										<li v-for="permission in role.permissions" :key="permission.id" class="badge bg-primary">
+											{{permission.name}}
+										</li>
+									</ul>
+
 								</td>
 								<td>
 									<a href="#" @click="showEditRoleModal(role)">

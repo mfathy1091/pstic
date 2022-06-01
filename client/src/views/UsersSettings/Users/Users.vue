@@ -65,9 +65,9 @@
 							<td>{{ user.email }}</td>
 							<td>{{ $filters.myDateShort(user.created_at) }}</td>
 							<td>
-								<div v-if="user.roles">
-									<span v-for="role in user.roles" :key="role.id" class="badge bg-primary">{{role.name}}</span>
-								</div>
+								<ul v-if="user.roles">
+									<li v-for="role in user.roles" :key="role.id" class="badge bg-primary">{{role.name}}</li>
+								</ul>
 							</td>
 							<td>
 								<div v-if="user.areas">

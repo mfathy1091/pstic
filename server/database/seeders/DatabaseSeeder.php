@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,23 +16,23 @@ class DatabaseSeeder extends Seeder
         $this->call(BudgetSeeder::class);
         $this->call(AdminUserSeeder::class);
         $this->call(UserSeeder::class);
-        // $this->call(PermissionSeeder::class);
+        $this->call(PermissionSeeder::class);
 
 
-        // $this->call(ReasonSeeder::class);
-        // $this->call(ServiceTypeSeeder::class);
-        // $this->call(StatusSeeder::class);
+        $this->call(ReasonSeeder::class);
+        $this->call(ServiceTypeSeeder::class);
+        $this->call(StatusSeeder::class);
 
         // $this->call(RoleTableSeeder::class);
 
-        // $this->call(NationalitySeeder::class);
-        // $this->call(DisabilitySeeder::class);
+        $this->call(NationalitySeeder::class);
+        $this->call(DisabilitySeeder::class);
         
-        // $this->call(GenderSeeder::class);
+        $this->call(GenderSeeder::class);
 
-        // $this->call(CitySeeder::class);
-        // $this->call(AreaSeeder::class);
-        // $this->call(DepartmentSeeder::class);
+        $this->call(CitySeeder::class);
+        $this->call(AreaSeeder::class);
+        $this->call(DepartmentSeeder::class);
         // $this->call(TeamSeeder::class);
 
         // $this->call(JobTitleSeeder::class);
@@ -41,18 +40,18 @@ class DatabaseSeeder extends Seeder
         // $this->call(AdminUserSeeder::class);
         // $this->call(UserSeeder::class);
 
-        // $this->call(CaseeSeeder::class);
-        // $this->call(ReferralSourceSeeder::class);
+        $this->call(CaseeSeeder::class);
+        $this->call(ReferralSourceSeeder::class);
         // $this->call(VulnerabilitySeeder::class);
-        // $this->call(EmergencyTypeSeeder::class);
+        $this->call(EmergencyTypeSeeder::class);
         
         //$this->call(PssCaseSeeder::class);
-        // $this->call(PsIntakeSeeder::class);
+        $this->call(PsIntakeSeeder::class);
 
 
 
 
-        // $this->call(MonthSeeder::class);
+        $this->call(MonthSeeder::class);
         //$this->call(RecordSeeder::class);
         //$this->call(RecordBeneficiarySeeder::class);
 

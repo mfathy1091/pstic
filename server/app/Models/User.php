@@ -18,15 +18,21 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'budget_id',
+        'photo',
+        'is_active'
     ];
+
+    protected $appends = ['full_name'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -36,9 +42,72 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+/*     public function getAllPermissionsAttribute() {
+        $permissions = [];
+            foreach (Permission::all() as $permission) {
+                if (Auth::user()->hasPermissionTo($permission->name)) {
+                    $permissions[] = $permission->name;
+                }
+            }
+        return $permissions;
+    } */
+
+    protected $table = 'users';
+    
+    public function areas()
+    {
+        return $this->belongsToMany(Area::class);
+        
+    }
+
+    public function directManager()
+    {
+        return $this->belongsTo(self::class, 'direct_manager_id');
+    }
+
+    public function directManagerTeam()
+    {
+        return $this->hasMany(self::class, 'direct_manager_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
+
+    public function hasPermission(string $permissionName)
+    {
+        return null !== $this->permissions()->where('name', $permissionName)->first();
+    }
+
+    // Accessors
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    // Mutators
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = ucfirst(strtolower($value));
+        
+    }
+
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = ucfirst(strtolower($value));
+        
+    }
+
 }
