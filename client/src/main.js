@@ -6,6 +6,7 @@ import axios from 'axios'
 import moment from 'moment'
 // window.$ = window.jQuery = require('jquery');
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap"
 
 // Font awsome libraries
 import { library } from "@fortawesome/fontawesome-svg-core";

@@ -2,13 +2,9 @@
 export default [
   {
     component: 'CNavItem',
-    name: 'Users',
-    to: '/users-settings/users',
-    icon: 'cil-speedometer',
-    badge: {
-      color: 'primary',
-      text: 'NEW',
-    },
+    name: 'Settings',
+    to: '/settings',
+    icon: 'cil-settings',
   },
   {
     component: 'CNavItem',
@@ -41,12 +37,12 @@ export default [
       {
         component: 'CNavItem',
         name: 'Users',
-        to: '/users-settings/users',
+        to: '/admin/users',
       },
       {
         component: 'CNavItem',
         name: 'Roles',
-        to: '/users-settings/roles',
+        to: '/admin/roles',
       },
     ],
   },

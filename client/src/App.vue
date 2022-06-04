@@ -1,44 +1,13 @@
 <template>
-<div>
-	<AppSidebar />
-	<div class="wrapper d-flex flex-column min-vh-100 bg-light">
-		<AppHeader />
-		<div class="body flex-grow-1 px-3">
-			<CContainer lg>
-				<div class="justify-content-center">
-					<div class="col">
-						<div class="card">
-							<div class="card-body">
-								<div class="div">
-									<router-view />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</CContainer>
-		</div>
-		<AppFooter />
-	</div>
-</div>
+	<router-view />
 </template>
+
 <script>
-import { CContainer } from "@coreui/vue";
-import AppFooter from "@/components/AppFooter.vue";
-import AppHeader from "@/components/AppHeader.vue";
-import AppSidebar from "@/components/AppSidebar.vue";
 
 export default {
-	name: "DefaultLayout",
-	components: {
-		AppFooter,
-		AppHeader,
-		AppSidebar,
-		CContainer,
-	},
-};
+	name: "AppView",
+}
 </script>
-
 
 <style lang="scss">
 // Import Main styles for this application

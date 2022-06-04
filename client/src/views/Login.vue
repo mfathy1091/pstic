@@ -35,7 +35,7 @@ export default {
         async login() {
             this.loginAction(this.credentials).then(() => {
 				this.$router.replace({
-                    name: 'DefaultLayout'
+                    path: '/'
                 })
             }).catch((e) => {
 				console.log(e)

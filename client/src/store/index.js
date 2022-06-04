@@ -3,11 +3,14 @@ import auth from './modules/auth'
 
 export default createStore({
 	state: {
-		showLoading: false,
+		showLoadingSpinner: false,
 		sidebarVisible: '',
 		sidebarUnfoldable: false,
 	},
 	getters: {
+		showLoadingSpinner(state){
+            return state.showLoadingSpinner
+        }
 	},
 	mutations: {
 		toggleSidebar(state) {

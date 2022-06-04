@@ -1,71 +1,71 @@
 import store from '@/store';
 import { createRouter, createWebHashHistory } from 'vue-router'
-import DefaultLayout from '../layouts/DefaultLayout'
-import Login from '../views/Login.vue'
-import { h, resolveComponent } from 'vue'
 
+import Login from '@/views/Login.vue'
+import Home from '@/modules/home/Home.vue'
+// import NotFoundComponent from '../views/pages/Page404.vue'
+// import { h, resolveComponent } from 'vue'
 
-const routes = [
+import usersRoutes from "@/modules/users/routes.js"
+import settingsRoutes from "@/modules/settings/routes.js"
+
+// import { ProfileRoutes } from "./modules/profile/routes.js"
+// import HomePage from "./pages/HomePage.vue"
+
+const baseRoutes = [
+	{ path: '/', name: 'home', component: Home, meta: { requireAuth: true } },
+	{ path: '/login', name: 'login', component: Login, meta: { requireAuth: false } },
+
 	{
-		path: '/',
-		name: 'DefaultLayout',
-		component: DefaultLayout, meta: { auth: true }
+		path: '/404', component: () => import('@/views/pages/Page404.vue') 
+	},
+	{
+		path: '/:catchAll(.*)', component: () => import('@/views/pages/Page404.vue') 
 	},
 
-	{ path: '/login', name: 'login', component: Login, meta: { auth: false } }, 
 
-	{
-        path: '/users-settings',
-        name: 'Users Settings',
-        component: {
-			render() {
-				return h(resolveComponent('router-view'))
-			},
-        },
-        redirect: '/users-settings/roles',
-        children: [
-			{
-				path: '/users-settings/users',
-				name: 'Users',
-				component: () => import('@/views/UsersSettings/Users/Users.vue'),
-				meta: { auth: true }
-			},
-			{
-				path: '/users-settings/roles',
-				name: 'Roles',
-				component: () => import('@/views/UsersSettings/Roles/Roles.vue'),
-				meta: { auth: true }
-			},
-		]
-	}
+	// {
+    //     path: '/admin', name: 'admin',
+    //     component: {
+	// 		render() {
+	// 			return h(resolveComponent('router-view'))
+	// 		},
+    //     },
+    //     redirect: '/users-settings/roles',
+    //     children: []
+	// }
 
-]
+];
 
 const router = createRouter({
 	history: createWebHashHistory(process.env.BASE_URL),
-	routes,
+	routes: [
+		...baseRoutes,
+		...settingsRoutes,
+		...usersRoutes
+	],
 	scrollBehavior() {
 		// always scroll to top
 		return { top: 0 }
 	},
-  })
+})
 
-// let authenticated = store.getters['auth/authenticated']
+// let Authenticated = store.getters['auth/authenticated']
 router.beforeEach((to, from, next) => {
-	
-	if(to.meta.auth && !store.getters['auth/authenticated']){
+
+	if(to.meta.requireAuth == true && store.getters['auth/authenticated'] == false){
 		next({
 			name: 'login'
 		})
 		
-	}else if(!to.meta.auth && store.getters['auth/authenticated']){
+	}else if(to.meta.requireAuth == false && store.getters['auth/authenticated'] == true){
 		next({
-			name: 'DefaultLayout'
+			name: 'admin'
 		})
 	}else{
 		next()
 	}
-	console.log(to.meta.auth, store.getters['auth/authenticated'])
+	console.log(to.meta.requireAuth, store.getters['auth/authenticated'])
 });
 
 export default router

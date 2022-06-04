@@ -1,6 +1,21 @@
 <template>
+	<div>
+		<div class="dropdown">
+  <span class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </span>
+	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+					<CDropdownItem @click="logout">
+					<CIcon icon="cil-lock-locked" /> Logout
+				</CDropdownItem>
+	</ul>
+</div>
+	
+	
 	<CDropdown variant="nav-item">
-		<CDropdownToggle placement="bottom-end" class="py-0" :caret="false">
+		
+		<CDropdownToggle color="primary" component="button">
 			<CAvatar :src="avatar" size="md" />
 		</CDropdownToggle>
 		<CDropdownMenu class="pt-0">
@@ -45,6 +60,7 @@
 			</CDropdownItem>
 		</CDropdownMenu>
 	</CDropdown>
+	</div>
 </template>
 
 <script>
