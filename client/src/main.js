@@ -85,6 +85,8 @@ store.dispatch('auth/attempt', localStorage.getItem('token'))
         },
     }
 
+    
+
 })
 
 

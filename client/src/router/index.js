@@ -1,11 +1,11 @@
 import store from '@/store';
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Login from '@/views/Login.vue'
 import Home from '@/modules/home/Home.vue'
 // import NotFoundComponent from '../views/pages/Page404.vue'
 // import { h, resolveComponent } from 'vue'
-
+authRoutes
+import authRoutes from "@/modules/auth/routes.js"
 import usersRoutes from "@/modules/users/routes.js"
 import settingsRoutes from "@/modules/settings/routes.js"
 
@@ -14,7 +14,6 @@ import settingsRoutes from "@/modules/settings/routes.js"
 
 const baseRoutes = [
 	{ path: '/', name: 'home', component: Home, meta: { requireAuth: true } },
-	{ path: '/login', name: 'login', component: Login, meta: { requireAuth: false } },
 
 	{
 		path: '/404', component: () => import('@/views/pages/Page404.vue') 
@@ -41,6 +40,7 @@ const router = createRouter({
 	history: createWebHashHistory(process.env.BASE_URL),
 	routes: [
 		...baseRoutes,
+		...authRoutes,
 		...settingsRoutes,
 		...usersRoutes
 	],
