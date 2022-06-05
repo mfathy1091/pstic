@@ -6,6 +6,7 @@
 			<div class="body flex-grow-1 px-3">
 				<CContainer lg>
 						<router-view />
+						<button @click="submit"></button>
 				</CContainer>
 			</div>
 			<AppFooter />
@@ -26,5 +27,10 @@ export default {
 		AppSidebar,
 		CContainer,
 	},
+	methods:{
+		submit(){
+			this.$swal.fire('welcome')
+		}
+	}
 };
 </script>

@@ -21,7 +21,7 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 
 
-import VueSweetalert2 from 'vue-sweetalert2';
+import swal from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 require('@/store/subscriber')
@@ -56,7 +56,7 @@ store.dispatch('auth/attempt', localStorage.getItem('token'))
     const app = createApp(App)
     app.use(store)
     app.use(router)
-    app.use(CoreuiVue, VueSweetalert2)
+    app.use(CoreuiVue, swal)
     app.provide('icons', icons)
     app.component('CIcon', CIcon)
     app.component('DocsCallout', DocsCallout)
