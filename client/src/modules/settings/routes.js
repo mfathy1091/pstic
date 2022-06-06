@@ -1,6 +1,6 @@
 import Settings from '@/modules/settings/SettingsModule.vue'
-import Users from '@/views/UsersSettings/Users/Users.vue'
-import Roles from '@/views/UsersSettings/Roles/Roles.vue'
+import Users from '@/modules/settings/Users/Users.vue'
+import Roles from '@/modules/settings/Roles/Roles.vue'
 
 export default [
     {

@@ -2,20 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <form @submit.prevent>
+                <form @submit.prevent="login" @keydown="loginForm.errors.clear($event.target.name)">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" v-model="loginForm.email" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <span v-text="errors.get('email')" class="text-danger"></span>
+                        <input name="email" class="form-control" v-model.trim="loginForm.email" @keydown="loginForm.errors.clear('email')">
+                        <span v-if="loginForm.errors.has('email')" v-text="loginForm.errors.get('email')" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" v-model="loginForm.password" id="exampleInputPassword1">
-                        <span v-text="errors.get('password')" class="text-danger"></span>
+                        <input name="password" type="password" class="form-control" v-model="loginForm.password" id="exampleInputPassword1">
+                        <span v-if="loginForm.errors.has('password')" v-text="loginForm.errors.get('password')" class="text-danger"></span>
                     </div>
                     <br>
                     <div>
-                        <button type="submit" @click="login" class="btn btn-primary">Login</button>
+                        <button type="submit" :disabled="loginForm.errors.any()" class="btn btn-primary">Login</button>
                     </div>
 
                 </form>
@@ -26,18 +26,30 @@
 
 <script>
 import {mapActions} from 'vuex'
-import Errors from '../utils/Errors.js'
+import Form from '@/utils/Form.js'
+import Swal from 'sweetalert2'
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
 
 export default {
     name: 'LoginView',
     data() {
         return {
-            loginForm: {
+            loginForm: new Form({
                 email: "",
                 password: "",
-                
-            },
-            errors: new Errors()
+            }),
+
         }
     },
 
@@ -52,7 +64,21 @@ export default {
                     this.$router.replace({
                         path: '/'
                     })
-                }).catch(error => console.log(error));
+                }).catch((error) => {
+                    switch(error.response.status) {
+                        case 401:
+                            Toast.fire({
+                            icon: 'warning',
+                            title: 'Invalid credentials'
+                        })
+                            break;
+                        case 422:
+                            this.loginForm.errors.set(error.response.data.errors)
+                            break;
+                        default:
+                            // code block
+                    }
+                })
         }
     }
 }
