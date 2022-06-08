@@ -4,9 +4,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '@/modules/home/Home.vue'
 // import NotFoundComponent from '../views/pages/Page404.vue'
 // import { h, resolveComponent } from 'vue'
-authRoutes
+
 import authRoutes from "@/modules/auth/routes.js"
-import usersRoutes from "@/modules/users/routes.js"
 import settingsRoutes from "@/modules/settings/routes.js"
 
 // import { ProfileRoutes } from "./modules/profile/routes.js"
@@ -42,7 +41,6 @@ const router = createRouter({
 		...baseRoutes,
 		...authRoutes,
 		...settingsRoutes,
-		...usersRoutes
 	],
 	scrollBehavior() {
 		// always scroll to top

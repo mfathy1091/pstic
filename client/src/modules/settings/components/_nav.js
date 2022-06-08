@@ -16,34 +16,34 @@ export default [
   
   {
     component: 'CNavTitle',
-    name: 'Theme',
+    name: 'PSS',
   },
-  {
-    component: 'CNavItem',
-    name: 'Colors',
-    to: '/theme/colors',
-    icon: 'cil-drop',
-  },
+  // {
+  //   component: 'CNavItem',
+  //   name: 'Colors',
+  //   to: '/theme/colors',
+  //   icon: 'cil-drop',
+  // },
 
 
-  {
-    component: 'CNavGroup',
-    name: 'Users Settings',
-    to: '/users-settings',
-    icon: 'cil-puzzle',
-    items: [
-      {
-        component: 'CNavItem',
-        name: 'Users',
-        to: '/admin/users',
-      },
-      {
-        component: 'CNavItem',
-        name: 'Roles',
-        to: '/admin/roles',
-      },
-    ],
-  },
+  // {
+  //   component: 'CNavGroup',
+  //   name: 'Users Settings',
+  //   to: '/users-settings',
+  //   icon: 'cil-puzzle',
+  //   items: [
+  //     {
+  //       component: 'CNavItem',
+  //       name: 'Users',
+  //       to: '/admin/users',
+  //     },
+  //     {
+  //       component: 'CNavItem',
+  //       name: 'Roles',
+  //       to: '/admin/roles',
+  //     },
+  //   ],
+  // },
   
 
   // {
