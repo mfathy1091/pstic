@@ -43,12 +43,7 @@ export default {
 			});
 			// this.$Progress.finish();
 		},
-		getRoles(){			
-			// this.$Progress.start();
-			axios.get("/roles")
-			.then(({data}) => (this.roles = data.data));
-			// this.$Progress.finish();
-		},
+
 		getAreas(){			
 			// this.$Progress.start();
 			axios.get("/areas")
@@ -242,18 +237,7 @@ export default {
 			})
 		},
 
-		getUsers(filter){
-			// this.$Progress.start();
-			axios.get('/users/', { params: filter } )
-			.then((response) => {
-				this.users = response.data.data.data;
-				// this.$Progress.finish();
-			})
-			.catch((e) => {
-				// this.$Progress.fail();
-				console.log(e);
-			})
-		},
+
 
 		getServiceTypes(){
 			// this.$Progress.start();

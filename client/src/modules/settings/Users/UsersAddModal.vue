@@ -13,7 +13,7 @@
 				<button type="submit" class="btn btn-primary">
 					Create
 				</button>
-				<button type="button" class="btn btn-secondary" @click="setModalVisible(false)">
+				<button type="button" class="btn btn-secondary" @click="setModalVisibility(false)">
 					Close
 				</button>
 			</template>
@@ -24,6 +24,7 @@
 import Modal from "@/components/Modal.vue"
 import store from '@/store/index.js'
 import usersForm from './form.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -32,15 +33,18 @@ export default {
 	},
 
     computed: {
-		isModalVisible () {
-			return this.$store.state.isModalVisible
-		}
+
+		...mapGetters({
+			isModalVisible: 'isModalVisible',
+			roles: 'roles/roles'
+		})
 	},
 
+
 	methods: {
-		setModalVisible (isVisible) {
-			store.commit('setModalVisible', isVisible)
+		setModalVisibility (isVisible) {
+			store.commit('setModalVisibility', isVisible)
 		},
-    }
+    },
 }
 </script>

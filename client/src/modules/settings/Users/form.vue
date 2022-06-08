@@ -158,6 +158,7 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import Form from '@/utils/Form.js'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'UsersForm',
@@ -166,8 +167,6 @@ export default {
 		return {
 			userEditMode: false,
 			selected: this.selectedUser,
-			users: {},
-			roles: [],
 			budgets: [],
 			areas: [],
 			departments: [],
@@ -187,6 +186,10 @@ export default {
 		};
 	},
     methods: {
+        ...mapActions({
+			fetchRoles: "roles/fetchRoles",
+		}),
+
 		setUserEditMode(value, user) {
 			this.userEditMode = value;
             if(this.userEditMode == true){
@@ -201,6 +204,18 @@ export default {
 		// this.getUsers();
 		// this.getRoles();
 		// this.getBudgets();
-	}
+	},
+
+    async mounted(){
+		// await this.fetchRoles;
+		await this.$store.dispatch('roles/fetchRoles');
+	},
+
+    computed: {
+
+	...mapGetters({
+			roles: 'roles/roles'
+		})
+	},
 }
 </script>

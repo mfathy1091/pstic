@@ -1,18 +1,18 @@
 <template>
-    <SideBar>
+    <Sidebar>
         <template v-slot:nav>
             <SettingsSidebarNav/>
         </template>
         
-    </SideBar>
+    </Sidebar>
 </template>
 <script>
-import SideBar from '@/components/Sidebar.vue';
+import Sidebar from '@/components/Sidebar.vue';
 import { SettingsSidebarNav } from './SettingsSidebarNav'
 export default {
-    name: 'SettingsSideBar',
+    name: 'SettingsSidebar',
     components: {
-        SideBar,
+        Sidebar,
         SettingsSidebarNav
     },
 }

@@ -15,7 +15,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="form-inline ml-2">
-						<button class="btn btn-primary btn-sm mr-2" @click="setModalVisible(true)">
+						<button class="btn btn-primary btn-sm mr-2" @click="setModalVisibility(true)">
 							<i class="fa-solid fa-circle-plus"></i>
 							<span><b> User</b></span>
 						</button>
@@ -53,7 +53,7 @@
 						</select>
 					</div>
 					<div class="row mt-3">
-						<table class=" table table-hover">
+						<table class=" table table-hover" v-if="users">
 							<thead>
 								<tr>
 									<th>Full Name</th>
@@ -127,11 +127,11 @@ import axiosMixin from '../../../mixins/axiosMixin'
 import axios from 'axios'
 import $ from 'jquery'
 import UsersAddModal from './UsersAddModal.vue'
-import store from '@/store/index.js'
+import store from '@/store'
 // import { computed } from 'vue'
 // import { useStore } from 'vuex'
-// import { mapGetters, mapMutations } from 'vuex'
-
+import { mapGetters } from 'vuex'
+// mapMutations
 
 export default {
 	name: 'UsersView',
@@ -143,7 +143,7 @@ export default {
 	// 	let store = useStore()
 	// 	return {
 	// 		modalVisible: computed(() => store.state.modalVisible),
-	// 		showModal: computed(() => store.commit('setModalVisible', true)),
+	// 		showModal: computed(() => store.commit('setModalVisibility', true)),
 	// 	}
 	// },
 
@@ -151,8 +151,7 @@ export default {
 		return {
 			userEditMode: false,
 			selectedUser: {},
-			users: {},
-			roles: [],
+			// users: {},
 			budgets: [],
 			filter: {
 				role_id: '',
@@ -163,8 +162,21 @@ export default {
 		}
 	},
 	methods: {
-		setModalVisible (isVisible) {
-			store.commit('setModalVisible', isVisible)
+		getUsers(filter){
+			// this.$Progress.start();
+			axios.get('/users/', { params: filter } )
+			.then((response) => {
+				this.users = response.data.data.data;
+				// this.$Progress.finish();
+			})
+			.catch((e) => {
+				// this.$Progress.fail();
+				console.log(e);
+			})
+		},
+
+		setModalVisibility (isVisible) {
+			store.commit('setModalVisibility', isVisible)
 		},
 
 		showCreateUserModal() {
@@ -213,12 +225,19 @@ export default {
 		},
 	},
 
+	computed: {
+		...mapGetters({
+			users: 'users/users',
+		})
+	},
+	async mounted(){
+		await this.$store.dispatch('users/fetchUsers');
+	},
+
 	created() {
 		// console.log($getPermissions());
 
-		this.getUsers();
-		this.getRoles();
-		this.getBudgets();
-	}
+	},
+
 }
 </script>

@@ -1,5 +1,8 @@
 import { createStore } from 'vuex'
 import auth from '@/modules/auth/store.js'
+import users from '@/modules/settings/Users/store.js'
+import roles from '@/modules/settings/Roles/store.js'
+
 
 export default createStore({
 	state: {
@@ -11,7 +14,11 @@ export default createStore({
 	getters: {
 		showLoadingSpinner(state){
             return state.showLoadingSpinner
-        }
+        },
+
+		isModalVisible(state){
+			return state.isModalVisible
+		}
 	},
 	mutations: {
 		toggleSidebar(state) {
@@ -23,7 +30,7 @@ export default createStore({
 		updateSidebarVisible(state, payload) {
 			state.sidebarVisible = payload.value
 		},
-		setModalVisible(state, isVisible) {
+		setModalVisibility(state, isVisible) {
 			state.isModalVisible = isVisible
 		},
 	},
@@ -31,5 +38,7 @@ export default createStore({
 	},
 	modules: {
 		auth,
+		users,
+		roles
 	}
 })

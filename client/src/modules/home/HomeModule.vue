@@ -16,7 +16,7 @@ import AppHeader from "@/components/AppHeader.vue";
 import HomeSideBar from "./components/HomeSideBar.vue";
 
 export default {
-	name: "HomeView",
+	name: "HomeModule",
 	components: {
 		AppFooter,
 		AppHeader,
