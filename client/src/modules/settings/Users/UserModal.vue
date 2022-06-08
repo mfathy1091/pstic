@@ -191,6 +191,7 @@ import Multiselect from 'vue-multiselect'
 import axiosMixin from "../../../mixins/axiosMixin";
 import $ from "jquery";
 
+
 export default {
 	name: 'UserModal',
 	mixins: [axiosMixin],

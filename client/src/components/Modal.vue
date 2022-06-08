@@ -21,9 +21,6 @@
 							</section>
 
 							<footer class="modal-footer">
-								<button type="button" class="btn btn-secondary" @click="closeModal" aria-label="Close modal">
-									Close
-								</button>
 								<slot name="footer">
 									<!-- This is the default footer! -->
 								</slot>
@@ -39,8 +36,6 @@
 // import { onMounted, onUnmounted } from 'vue';
 // import { computed } from 'vue'
 // import { useStore } from 'vuex'
-import store from '@/store/index.js'
-
 
 export default {
 	name: 'ModalComponent',
@@ -66,11 +61,6 @@ export default {
 	// 	}
 
 	// },
-	methods: {
-		closeModal () {
-			store.commit('setModalVisible', false)
-		},
-	}
 
 
 };

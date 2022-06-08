@@ -15,7 +15,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="form-inline ml-2">
-						<button class="btn btn-primary btn-sm mr-2" @click="showModal">
+						<button class="btn btn-primary btn-sm mr-2" @click="setModalVisible(true)">
 							<i class="fa-solid fa-circle-plus"></i>
 							<span><b> User</b></span>
 						</button>
@@ -127,6 +127,7 @@ import axiosMixin from '../../../mixins/axiosMixin'
 import axios from 'axios'
 import $ from 'jquery'
 import UsersAddModal from './UsersAddModal.vue'
+import store from '@/store/index.js'
 // import { computed } from 'vue'
 // import { useStore } from 'vuex'
 // import { mapGetters, mapMutations } from 'vuex'
@@ -162,6 +163,10 @@ export default {
 		}
 	},
 	methods: {
+		setModalVisible (isVisible) {
+			store.commit('setModalVisible', isVisible)
+		},
+
 		showCreateUserModal() {
 			this.userEditMode = false;
 			this.selectedUser = {};

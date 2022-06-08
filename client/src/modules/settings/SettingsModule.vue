@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AppSidebar />
+		<SettingsSideBar />
 		<div class="wrapper d-flex flex-column min-vh-100 bg-light">
 			<AppHeader />
 			<div class="body flex-grow-1 px-3">
@@ -15,9 +15,9 @@
 </template>
 <script>
 // import { CContainer } from "@coreui/vue";
-import AppFooter from "./components/AppFooter.vue";
-import AppHeader from "./components/AppHeader.vue";
-import AppSidebar from "./components/AppSidebar.vue";
+import AppFooter from "@/components/AppFooter.vue";
+import AppHeader from "@/components/AppHeader.vue";
+import SettingsSideBar from "./components/SettingsSideBar.vue";
 
 
 export default {
@@ -25,7 +25,7 @@ export default {
 	components: {
 		AppFooter,
 		AppHeader,
-		AppSidebar,
+		SettingsSideBar,
 		// CContainer,
 	},
 

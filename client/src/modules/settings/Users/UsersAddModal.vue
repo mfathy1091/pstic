@@ -1,7 +1,7 @@
 <template>
     <div>
         <Modal
-			v-show="modalVisible"
+			v-show="isModalVisible"
 		>
 			<template v-slot:header>
 				<h5>Add User</h5>
@@ -10,10 +10,11 @@
 				<usersForm></usersForm>
 			</template>
 			<template v-slot:footer>
-				<button
-                    type="submit"
-                    class="btn btn-primary"
-                >Create
+				<button type="submit" class="btn btn-primary">
+					Create
+				</button>
+				<button type="button" class="btn btn-secondary" @click="setModalVisible(false)">
+					Close
 				</button>
 			</template>
 		</Modal>
@@ -31,14 +32,14 @@ export default {
 	},
 
     computed: {
-		modalVisible () {
-			return this.$store.state.modalVisible
+		isModalVisible () {
+			return this.$store.state.isModalVisible
 		}
 	},
 
 	methods: {
-		showModal () {
-			store.commit('setModalVisible', true)
+		setModalVisible (isVisible) {
+			store.commit('setModalVisible', isVisible)
 		},
     }
 }

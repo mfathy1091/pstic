@@ -6,7 +6,7 @@ export default createStore({
 		showLoadingSpinner: false,
 		sidebarVisible: '',
 		sidebarUnfoldable: false,
-		modalVisible: false,
+		isModalVisible: false,
 	},
 	getters: {
 		showLoadingSpinner(state){
@@ -23,13 +23,13 @@ export default createStore({
 		updateSidebarVisible(state, payload) {
 			state.sidebarVisible = payload.value
 		},
-		setModalVisible(state, payload) {
-			state.modalVisible = payload
+		setModalVisible(state, isVisible) {
+			state.isModalVisible = isVisible
 		},
 	},
 	actions: {
 	},
 	modules: {
-		auth
+		auth,
 	}
 })

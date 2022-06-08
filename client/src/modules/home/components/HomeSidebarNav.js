@@ -42,8 +42,8 @@ const isActiveItem = (route, item) => {
   return false
 }
 
-const AppSidebarNav = defineComponent({
-  name: 'AppSidebarNav',
+const HomeSidebarNav = defineComponent({
+  name: 'HomeSidebarNav',
   components: {
     CNavItem,
     CNavGroup,
@@ -140,4 +140,4 @@ const AppSidebarNav = defineComponent({
       )
   },
 })
-export { AppSidebarNav }
+export { HomeSidebarNav }

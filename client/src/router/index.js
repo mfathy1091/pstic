@@ -1,7 +1,7 @@
 import store from '@/store';
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Home from '@/modules/home/Home.vue'
+import Home from '@/modules/home/HomeModule.vue'
 // import NotFoundComponent from '../views/pages/Page404.vue'
 // import { h, resolveComponent } from 'vue'
 
