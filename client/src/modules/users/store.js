@@ -6,6 +6,7 @@ export default {
 
     state: {
         users: [],
+        createdData: null,
     },
 
 
@@ -21,6 +22,10 @@ export default {
             state.users = value
         },
 
+        setCreatedData(state, value) {
+            state.createdData = value
+        },
+
     },
 
     actions: {
@@ -29,17 +34,30 @@ export default {
 			.then((response) => {
                 commit('setUsers', response.data.data.data);
 				// this.$Progress.finish();
+                return response
 			})
 			.catch((e) => {
 				// this.$Progress.fail();
 				console.log(e);
+                return e
 			})
+            
+            
 		},
 
-        async createUser( payload ){
-            let response = await axios.post('/users/', { params: payload } )
-            return response
-        }
+        async createUser( user) {
+            await axios.post('users', user)
+            
+            .then(res => {
+                // commit('setCreatedData', res.data.data);
+                // commit('setProductIsCreating', false);
+                console.log(res);
+            }).catch(err => {
+                // console.log('error', err);
+                // commit('setProductIsCreating', false);
+                console.log(err);
+            });
+        },
     }
 
 }

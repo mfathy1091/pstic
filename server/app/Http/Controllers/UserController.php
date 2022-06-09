@@ -64,9 +64,13 @@ class UserController extends Controller
             // 'photo' => '',
             'budget_id' => 'required',
             'department_id' => 'required',
-            'roles' => '',
-            'areas' => ''
+            "areas"  => "required|array",
+            "roles"  => "required|array|min:2",
+            "areas.*"  => "required|string|distinct",
+            "roles.*"  => "required|string|distinct",
         ]);
+
+        
 
         $user = User::create([
             'first_name' => $fields['first_name'],
@@ -88,7 +92,7 @@ class UserController extends Controller
             'user' => $user,
         ];
 
-        return response($data, 201);
+        return response($request, 201);
     }
 
 

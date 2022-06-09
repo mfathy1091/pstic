@@ -63,6 +63,7 @@ src="vue-multiselect/dist/vue-multiselect.css">
                                     <!-- <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template> -->
                                 </multiselect>
                                 <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+                                <span v-if="userForm.errors.has('roles')" v-text="userForm.errors.get('roles')" class="text-danger"></span>
                             </div>
                             <div class="mb-3" v-if="areas">
                                 <label class="typo__label">Areas</label>
@@ -81,6 +82,7 @@ src="vue-multiselect/dist/vue-multiselect.css">
                                     <!-- <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template> -->
                                 </multiselect>
                                 <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+                                <span v-if="userForm.errors.has('areas')" v-text="userForm.errors.get('areas')" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="budget_id" class="form-label">Budget</label>
