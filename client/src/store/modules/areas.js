@@ -5,30 +5,30 @@ export default {
     namespaced: true,
 
     state: {
-        users: [],
+        areas: [],
     },
 
 
     getters: {
-        users(state){
-            return state.users
+        areas(state){
+            return state.areas
         },
 
     },
 
     mutations: {
-        setUsers (state, value) {
-            state.users = value
+        setAreas (state, value) {
+            state.areas = value
         },
 
     },
 
     actions: {
-        async fetchUsers({ commit }, filter){
+        async fetchAreas({ commit }, filter){
 			// this.$Progress.start();
-			await axios.get('/users/', { params: filter } )
+			await axios.get('/areas/', { params: filter } )
 			.then((response) => {
-                commit('setUsers', response.data.data.data);
+                commit('setAreas', response.data.data);
 				// this.$Progress.finish();
 			})
 			.catch((e) => {

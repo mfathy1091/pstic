@@ -112,13 +112,11 @@
 <script>
 import Form from 'vform';
 import Multiselect from 'vue-multiselect'
-import axiosMixin from '../../../mixins/axiosMixin'
 import $ from 'jquery'
 
 export default {
 	
 	name: 'RolesView',
-	mixins: [axiosMixin],
 	components: { Multiselect },
 	data() {
 		return {
@@ -225,8 +223,8 @@ export default {
 	},
 	
 	created() {
-		this.getRoles();
-		this.getPermissions();
+		// this.getRoles();
+		// this.getPermissions();
 	}
 }
 </script>

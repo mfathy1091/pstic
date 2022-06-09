@@ -1,18 +1,21 @@
 import store from '@/store';
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Home from '@/modules/home/HomeModule.vue'
 // import NotFoundComponent from '../views/pages/Page404.vue'
 // import { h, resolveComponent } from 'vue'
 
 import authRoutes from "@/modules/auth/routes.js"
-import settingsRoutes from "@/modules/settings/routes.js"
+import Home from '@/modules/home/module.vue'
+import Settings from '@/modules/settings/module.vue'
+import usersRoutes from "@/modules/users/routes.js"
+import rolesRoutes from "@/modules/roles/routes.js"
+
 
 // import { ProfileRoutes } from "./modules/profile/routes.js"
 // import HomePage from "./pages/HomePage.vue"
 
 const baseRoutes = [
-	{ path: '/', name: 'home', component: Home, meta: { requireAuth: true } },
+
 
 	{
 		path: '/404', component: () => import('@/views/pages/Page404.vue') 
@@ -21,6 +24,18 @@ const baseRoutes = [
 		path: '/:catchAll(.*)', component: () => import('@/views/pages/Page404.vue') 
 	},
 
+
+	{ 
+		path: '/', name: 'home', component: Home, meta: { requireAuth: true } 
+	},
+	{
+        path: '/settings', name: 'settings', component: Settings, meta: { requireAuth: true },
+        //redirect: { name: 'users' },
+        children:[
+            ...usersRoutes,
+			...rolesRoutes,
+        ]
+    }
 
 	// {
     //     path: '/admin', name: 'admin',
@@ -40,7 +55,7 @@ const router = createRouter({
 	routes: [
 		...baseRoutes,
 		...authRoutes,
-		...settingsRoutes,
+		
 	],
 	scrollBehavior() {
 		// always scroll to top

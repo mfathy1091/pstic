@@ -63,6 +63,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8', // removed 'confirmed'
             // 'photo' => '',
             'budget_id' => 'required',
+            'department_id' => 'required',
             'roles' => '',
             'areas' => ''
         ]);

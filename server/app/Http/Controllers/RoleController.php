@@ -18,8 +18,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return Role::latest()->with('permissions')->paginate(10);
+        // $roles = Role::latest()->with('permissions')->paginate(10);
+        $roles = Role::get();
         
+        $data = [
+            'data' => $roles,
+        ];
+
+        return response($data, 200);
     }
 
         /**

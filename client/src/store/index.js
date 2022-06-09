@@ -1,7 +1,10 @@
 import { createStore } from 'vuex'
 import auth from '@/modules/auth/store.js'
-import users from '@/modules/settings/Users/store.js'
-import roles from '@/modules/settings/Roles/store.js'
+import users from '@/modules/users/store.js'
+import roles from '@/modules/roles/store.js'
+import areas from '@/store/modules/areas.js'
+import budgets from '@/store/modules/budgets.js'
+import departments from '@/store/modules/departments.js'
 
 
 export default createStore({
@@ -39,6 +42,9 @@ export default createStore({
 	modules: {
 		auth,
 		users,
-		roles
+		roles,
+		areas,
+		budgets,
+		departments
 	}
 })

@@ -1,19 +1,19 @@
 <template>
 	<div>
 		<div class="dropdown">
-  <span class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </span>
-	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+			<span class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+				Dropdown button
+			</span>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-					<CDropdownItem @click="logout">
-					<CIcon icon="cil-lock-locked" /> Logout
-				</CDropdownItem>
-	</ul>
-</div>
+				<CDropdownItem @click="logout">
+				<CIcon icon="cil-lock-locked" /> Logout
+			</CDropdownItem>
+			</ul>
+		</div>
 	
 	
-	<CDropdown variant="nav-item">
+	<!-- <CDropdown variant="nav-item">
 		
 		<CDropdownToggle color="primary" component="button">
 			<CAvatar :src="avatar" size="md" />
@@ -59,7 +59,7 @@
 				<CIcon icon="cil-lock-locked" /> Logout 
 			</CDropdownItem>
 		</CDropdownMenu>
-	</CDropdown>
+	</CDropdown> -->
 	</div>
 </template>
 

@@ -23,13 +23,13 @@
 <script>
 import Modal from "@/components/Modal.vue"
 import store from '@/store/index.js'
-import usersForm from './form.vue'
+// import usersForm from './form.vue'
 import { mapGetters } from 'vuex'
 
 export default {
     components: {
 		Modal,
-		usersForm
+		// usersForm
 	},
 
     computed: {

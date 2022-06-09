@@ -5,7 +5,7 @@
                 <form @submit.prevent="login" @keydown="loginForm.errors.clear($event.target.name)">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input name="email" class="form-control" v-model.trim="loginForm.email" @keydown="loginForm.errors.clear('email')">
+                        <input name="email" class="form-control" v-model.trim="loginForm.email">
                         <span v-if="loginForm.errors.has('email')" v-text="loginForm.errors.get('email')" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -68,9 +68,9 @@ export default {
                     switch(error.response.status) {
                         case 401:
                             Toast.fire({
-                            icon: 'warning',
-                            title: 'Invalid credentials'
-                        })
+                                icon: 'warning',
+                                title: 'Invalid credentials'
+                            })
                             break;
                         case 422:
                             this.loginForm.errors.set(error.response.data.errors)
