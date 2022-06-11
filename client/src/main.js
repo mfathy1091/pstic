@@ -20,11 +20,27 @@ library.add(far);
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 
+import Swal from 'sweetalert2';
 
-import swal from 'vue-sweetalert2';
+import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
+window.toast = Toast
+
 require('@/store/subscriber')
+
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 
@@ -56,14 +72,15 @@ store.dispatch('auth/attempt', localStorage.getItem('token'))
     const app = createApp(App)
     app.use(store)
     app.use(router)
-    app.use(CoreuiVue, swal)
+    app.use(CoreuiVue)
+    app.use(VueSweetalert2);
     app.provide('icons', icons)
     app.component('CIcon', CIcon)
     app.component('DocsCallout', DocsCallout)
     app.component('DocsExample', DocsExample)
 
 
-    app.config.globalProperties.axios=axios
+    // app.config.globalProperties.axios=axios
 
     app.mount('#app')
 

@@ -8,7 +8,7 @@ src="vue-multiselect/dist/vue-multiselect.css">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Create New User</h4>
-                    <form @submit.prevent="createUser()">
+                    <form @submit.prevent="createUser()" @keydown="userForm.errors.clear($event.target.name)">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">First Name</label>
@@ -150,8 +150,10 @@ src="vue-multiselect/dist/vue-multiselect.css">
                             </div>
                         </div>
                         <hr>
-                        <button class="btn btn-primary" type="submit">Create</button>
+                        <button class="btn btn-primary" type="submit" :disabled="isAdding">Create
+                        </button>
                     </form>
+                    <button class="btn btn-primary" @click="show">show</button>
                 </div>
             </div>
         </div>
@@ -161,19 +163,8 @@ src="vue-multiselect/dist/vue-multiselect.css">
 import Multiselect from 'vue-multiselect'
 import Form from '@/utils/Form.js'
 import { mapGetters, mapActions } from 'vuex'
-import Swal from 'sweetalert2'
-
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
+import MySwal from '@/utils/MySwal.js'
+import UserDataService from '../services/UserDataService'
 
 export default {
 
@@ -182,6 +173,8 @@ export default {
 	},
     data(){
 		return {
+            userEditMode: false,
+            isAdding: false,
 			userForm: new Form({
 				id: "",
 				first_name: "",
@@ -191,7 +184,9 @@ export default {
 				photo: "",
 				budget_id: "",
 				department_id: "",
-				is_active: "",
+				is_active: 0,
+                areas: [],
+                roles: []
 			}),
 		};
     },
@@ -213,24 +208,29 @@ export default {
             createUserAction: "users/createUser",
 		}),
 
-        async createUser(){
-            this.createUserAction(this.userForm)
-                .then(() => {
-                    //this.$router.go(-1)
-                    console.log('success')
-                }).catch((e) => {
-                    switch(e.response.status) {
-                        case 422:
-                            this.userForm.errors.set(e.response.data.errors)
-                            break;
-                        default:
-                            Toast.fire({
-                                icon: 'warning',
-                                title: e
-                            })
-                    }
-                })
+
+        show() {
+            MySwal.error('Created Successfuly')
+        },
+
+        async createUser() {
+            this.isAdding = true;
+            UserDataService.create(this.userForm)
+            .then(response => {
+                this.user = response.data.data.data;
+                this.$router.go(-1);
+                MySwal.success('Created Successfuly', '');
+            }).catch(e => {
+                switch(e.response.status) {
+                    case 422:
+                        this.userForm.errors.set(e.response.data.errors)
+                        break;
+                    default:
+                        MySwal.error(e.response.status, e);
+                }
+            });
         }
+
     },
     created(){
         this.fetchRoles();

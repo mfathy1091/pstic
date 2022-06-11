@@ -56,6 +56,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        
         $fields = $request->validate([
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
@@ -65,9 +66,10 @@ class UserController extends Controller
             'budget_id' => 'required',
             'department_id' => 'required',
             "areas"  => "required|array",
-            "roles"  => "required|array|min:2",
-            "areas.*"  => "required|string|distinct",
-            "roles.*"  => "required|string|distinct",
+            "roles"  => "required|array",
+            "is_active" => "required|boolean"
+            // "areas.*"  => "required|string|distinct",
+            // "roles.*"  => "required|string|distinct",
         ]);
 
         

@@ -31,6 +31,11 @@ export default {
 		Modal,
 		// usersForm
 	},
+	data(){
+		return {
+			isAdding: false,
+		}
+	},
 
     computed: {
 

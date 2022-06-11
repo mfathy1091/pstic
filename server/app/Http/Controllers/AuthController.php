@@ -20,7 +20,7 @@ class AuthController extends Controller
         $user = User::where('email', $fields['email'])->first();
 
         // Check if the password is correct
-        if(!$user || !Hash::check($fields['password'], $user->password)){
+        if(!$user || !$user->is_active || !Hash::check($fields['password'], $user->password)){
             $response = [
                 'message' => 'Not matched cretentials',
             ];

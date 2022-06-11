@@ -15,6 +15,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="form-inline ml-2">
+						<h5>Users</h5>
 						<button class="btn btn-primary btn-sm mr-2" @click="$router.push({ name: 'create_user'} )">
 							<i class="fa-solid fa-circle-plus"></i>
 							<span><b> User</b></span>
