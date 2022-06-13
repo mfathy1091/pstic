@@ -2,11 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import axios from 'axios'
 import moment from 'moment'
 // window.$ = window.jQuery = require('jquery');
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "bootstrap"
+import { HTTP } from "@/http-common";
 
 // Font awsome libraries
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -20,29 +20,19 @@ library.add(far);
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 
-import Swal from 'sweetalert2';
 
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
 
-window.toast = Toast
 
 require('@/store/subscriber')
 
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
+
+
+
+
 
 //axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
@@ -79,9 +69,7 @@ store.dispatch('auth/attempt', localStorage.getItem('token'))
     app.component('DocsCallout', DocsCallout)
     app.component('DocsExample', DocsExample)
 
-
-    // app.config.globalProperties.axios=axios
-
+    app.config.globalProperties.$HTTP = { ...HTTP }
     app.mount('#app')
 
 

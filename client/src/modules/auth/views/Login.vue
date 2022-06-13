@@ -25,21 +25,10 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import Form from '@/utils/Form.js'
-import Swal from 'sweetalert2'
+import MySwal from '@/utils/MySwal.js'
 
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-})
 
 export default {
     name: 'LoginView',
@@ -51,6 +40,11 @@ export default {
             }),
 
         }
+    },
+    computed: {
+        ...mapGetters({
+            authenticatedUser : 'auth/user'
+        })
     },
 
     methods: {
@@ -64,13 +58,11 @@ export default {
                     this.$router.replace({
                         path: '/'
                     })
+                MySwal.success( this.authenticatedUser.full_name, 'Welcome Back');
                 }).catch((error) => {
                     switch(error.response.status) {
                         case 401:
-                            Toast.fire({
-                                icon: 'warning',
-                                title: 'Invalid credentials'
-                            })
+                            MySwal.warning('Invalid credentials');
                             break;
                         case 422:
                             this.loginForm.errors.set(error.response.data.errors)
@@ -78,7 +70,7 @@ export default {
                         default:
                             // code block
                     }
-                })
+                })// .finally(() => this.loading = false)
         }
     }
 }

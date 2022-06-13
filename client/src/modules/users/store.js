@@ -1,4 +1,4 @@
-import axios from "axios";
+// import { HTTP } from "@/http-common";
 // import router from '../../router';
 
 export default {
@@ -31,7 +31,7 @@ export default {
     actions: {
         async fetchUsers({ commit }, filter){
             try {
-                let response = await axios.get('/users/', { params: filter } );
+                let response = await this.$HTTP.get('/users/', { params: filter } );
                 commit('setUsers', response.data.data.data);
             } catch (e) {
                 console.log(e);
@@ -40,8 +40,8 @@ export default {
 
         async createUser({ commit }, data) {
             
-                let response = await axios.post('users', data);
-               //  await axios.post('users', data);
+                let response = await this.$HTTP.post('users', data);
+               //  await HTTP.post('users', data);
                 commit('setCreatedData', response.data.data);
             
         },

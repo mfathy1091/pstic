@@ -1,5 +1,5 @@
-import axios from "axios";
 // import router from '../../router';
+import { HTTP } from '@/http-common'
 
 export default {
     namespaced: true,
@@ -59,7 +59,7 @@ export default {
         // },
 
         async login({ dispatch }, credentials) {
-            let response = await axios.post('auth/login', credentials)
+            let response = await HTTP.post('auth/login', credentials)
 
             return dispatch('attempt', response.data.token)
         },
@@ -74,7 +74,7 @@ export default {
             }
 
             try {
-                let response = await axios.get('auth/user')
+                let response = await HTTP.get('auth/user')
                 commit('SET_USER', response.data)
                 console.log('success')
             } catch (e) {
@@ -84,7 +84,7 @@ export default {
         },
 
         logout({commit}){
-            return axios.post('auth/logout').then(() => {
+            return HTTP.post('auth/logout').then(() => {
                 commit('SET_TOKEN', null)
                 commit('SET_USER', null)
             })
@@ -94,7 +94,7 @@ export default {
 
         async getAbilities({commit}){
             try{
-                const response = await axios.get("/abilities");
+                const response = await HTTP.get("/abilities");
                 commit('setAbilities', response.data.data)
             }catch(error){
                 console.error(error);
